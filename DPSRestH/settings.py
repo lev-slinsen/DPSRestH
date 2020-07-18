@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
+    # 'django.contrib.sites',
     # plugins
     'corsheaders',
     'rest_framework',
@@ -156,6 +156,6 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 
-SITE_ID = 1
+# SITE_ID = 1
 
 django_heroku.settings(locals())
