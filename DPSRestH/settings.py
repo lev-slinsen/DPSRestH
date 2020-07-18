@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     # custom apps
     'accounts.apps.AccountsConfig',
-    # 'catalog.apps.CatalogConfig',
+    'catalog.apps.CatalogConfig',
     # 'front.apps.FrontConfig',
     # 'shop.apps.ShopConfig',
 ]
