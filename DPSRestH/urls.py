@@ -22,9 +22,9 @@ from django.urls import include, path
 from rest_framework import routers
 
 from . import views
-from catalog import views as catalog_views
-from front import views as front_views
-from shop import views as shop_views
+# from catalog import views as catalog_views
+# from front import views as front_views
+# from shop import views as shop_views
 
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
