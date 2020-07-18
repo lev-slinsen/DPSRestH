@@ -23,7 +23,7 @@ from rest_framework import routers
 
 from . import views
 from catalog import views as catalog_views
-# from front import views as front_views
+from front import views as front_views
 # from shop import views as shop_views
 
 from rest_framework import permissions
@@ -47,10 +47,10 @@ schema_view = get_schema_view(
 router = routers.DefaultRouter()
 router.register(r'pizza', catalog_views.PizzaViewSet)
 router.register(r'filter', catalog_views.FilterViewSet)
+router.register(r'front-page', front_views.FrontPageViewSet)
+router.register(r'front-text', front_views.FrontTextViewSet)
+router.register(r'work-month', front_views.WorkMonthViewSet)
 # router.register(r'order', shop_views.OrderViewSet)
-# router.register(r'front-page', front_views.FrontPageViewSet)
-# router.register(r'front-text', front_views.FrontTextViewSet)
-# router.register(r'work-month', front_views.WorkMonthViewSet)
 
 
 urlpatterns = [
