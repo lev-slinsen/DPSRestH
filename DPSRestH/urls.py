@@ -22,7 +22,7 @@ from django.urls import include, path
 from rest_framework import routers
 
 from . import views
-# from catalog import views as catalog_views
+from catalog import views as catalog_views
 # from front import views as front_views
 # from shop import views as shop_views
 
@@ -44,9 +44,9 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,),
 )
 
-# router = routers.DefaultRouter()
-# router.register(r'pizza', catalog_views.PizzaViewSet)
-# router.register(r'filter', catalog_views.FilterViewSet)
+router = routers.DefaultRouter()
+router.register(r'pizza', catalog_views.PizzaViewSet)
+router.register(r'filter', catalog_views.FilterViewSet)
 # router.register(r'order', shop_views.OrderViewSet)
 # router.register(r'front-page', front_views.FrontPageViewSet)
 # router.register(r'front-text', front_views.FrontTextViewSet)
@@ -55,7 +55,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('rest/', include(router.urls)),
+    path('rest/', include(router.urls)),
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
