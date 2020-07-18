@@ -154,4 +154,6 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
+STATIC_URL = '/static/'
+
 django_heroku.settings(locals())
