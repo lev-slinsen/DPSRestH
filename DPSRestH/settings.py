@@ -156,4 +156,6 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 
+SITE_ID = 1
+
 django_heroku.settings(locals())
