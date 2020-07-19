@@ -154,10 +154,8 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = 'google-secret.json'
-GS_CREDENTIALS = os.getenv('GS_CREDENTIALS')
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'pechorin-bucket'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN')
+DROPBOX_WRITE_MODE = 'overwrite'
 
 django_heroku.settings(locals())
