@@ -32,12 +32,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django.contrib.sites',
     # plugins
     'corsheaders',
     'rest_framework',
     'imagekit',
     'drf_yasg',
+    'gdstorage',
     # custom apps
     'accounts.apps.AccountsConfig',
     'catalog.apps.CatalogConfig',
@@ -154,8 +154,10 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-STATIC_URL = '/static/'
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'pechorin-bucket'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-# SITE_ID = 1
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
 
 django_heroku.settings(locals())
