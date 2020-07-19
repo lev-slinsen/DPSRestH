@@ -71,5 +71,5 @@ class Pizza(models.Model):
 
 @receiver(post_save, sender=Pizza)
 def my_handler(sender, instance, **kwargs):
-    print('TEST', instance)
+    print('TEST', instance.photo, instance.photo_thumbnail)
     sys.stdout.flush()
