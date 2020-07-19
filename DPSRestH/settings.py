@@ -154,10 +154,9 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
+GS_CREDENTIALS = os.getenv('GS_CREDENTIALS')
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'pechorin-bucket'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-
-GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
 
 django_heroku.settings(locals())
