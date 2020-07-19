@@ -70,6 +70,6 @@ class Pizza(models.Model):
 
 
 @receiver(post_save, sender=Pizza)
-def my_handler(sender, **kwargs):
-    print('TEST', sender)
+def my_handler(sender, instance, **kwargs):
+    print('TEST', instance)
     sys.stdout.flush()
