@@ -71,5 +71,7 @@ class Pizza(models.Model):
 
 @receiver(post_save, sender=Pizza)
 def my_handler(sender, instance, **kwargs):
-    print('TEST', instance.photo, instance.photo_thumbnail)
+    # print('TEST', instance.photo, instance.photo_thumbnail)
+    queryset = Pizza.objects.filter(photo=instance.photo).first()
+    print(queryset)
     sys.stdout.flush()
