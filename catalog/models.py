@@ -48,12 +48,13 @@ class Pizza(models.Model):
     category = models.SmallIntegerField(choices=CATEGORY_CHOICES,
                                         verbose_name=_('Category'))
     photo = models.ImageField(upload_to='images/',
-                              verbose_name=_('Image'))
+                              verbose_name=_('Image'),
+                              upload_to='catalog',)
     photo_thumbnail = ImageSpecField(source='photo',
                                      processors=[ResizeToFill(100, 100)],
                                      format='JPEG',
                                      options={'quality': 90},
-                                     upload_to='catalog')
+                                     upload_to='catalog',)
     active = models.BooleanField(verbose_name=_('Active'))
 
     class Meta:
