@@ -156,5 +156,6 @@ LOCALE_PATHS = (
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN')
 DROPBOX_WRITE_MODE = 'overwrite'
+IMAGEKIT_DEFAULT_CACHEFILE_STRATEGY = 'imagekit.cachefiles.strategies.Optimistic'
 
 django_heroku.settings(locals())
