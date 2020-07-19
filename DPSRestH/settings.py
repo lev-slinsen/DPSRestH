@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'imagekit',
     'drf_yasg',
-    'gdstorage',
     # custom apps
     'accounts.apps.AccountsConfig',
     'catalog.apps.CatalogConfig',
