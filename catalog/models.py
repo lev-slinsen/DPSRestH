@@ -1,11 +1,16 @@
 """
 Catalogue models.
 """
+import sys
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
+
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 
 class Filter(models.Model):
@@ -62,3 +67,9 @@ class Pizza(models.Model):
 
     def __str__(self):
         return f"{self.category}: {self.name}"
+
+
+@receiver(pre_save, sender=Pizza)
+def my_handler(sender, **kwargs):
+    print(sender)
+    sys.stdout.flush()
