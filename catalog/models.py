@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 
-from django.db.models.signals import pre_save
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
@@ -69,7 +69,7 @@ class Pizza(models.Model):
         return f"{self.category}: {self.name}"
 
 
-@receiver(pre_save, sender=Pizza)
+@receiver(post_save, sender=Pizza)
 def my_handler(sender, **kwargs):
-    print(sender)
+    print('TEST', sender)
     sys.stdout.flush()
