@@ -154,6 +154,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.getenv('GS_CREDENTIALS')
 GS_CREDENTIALS = os.getenv('GS_CREDENTIALS')
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'pechorin-bucket'
