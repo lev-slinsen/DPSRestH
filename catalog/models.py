@@ -4,8 +4,10 @@ Catalogue models.
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from django.db import models
+from django.utils.text import slugify
+from django.dispatch import receiver
+import os
 
 
 class Filter(models.Model):
@@ -58,3 +60,26 @@ class Pizza(models.Model):
 
     def __str__(self):
         return f"{self.category}: {self.name}"
+
+
+@receiver(models.signals.post_delete, sender=Pizza)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    if instance.photo:
+        if os.path.isfile(instance.photo.path):
+            os.remove(instance.photo.path)
+
+
+@receiver(models.signals.pre_save, sender=Pizza)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    if not instance.pk:
+        return False
+
+    try:
+        old_file = sender.objects.get(pk=instance.pk).photo
+    except sender.DoesNotExist:
+        return False
+
+    new_file = instance.photo
+    if old_file != new_file:
+        if os.path.isfile(old_file.path):
+            os.remove(old_file.path)
