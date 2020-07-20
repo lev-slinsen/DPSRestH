@@ -1,5 +1,6 @@
-from .models import FrontPage, FrontText, FrontImage, WorkDate, WorkMonth
 from rest_framework import serializers
+
+from .models import FrontPage, FrontText, FrontImage, WorkDate, WorkMonth
 
 
 class FrontTextSerializer(serializers.ModelSerializer):

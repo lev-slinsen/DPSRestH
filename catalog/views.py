@@ -1,5 +1,6 @@
-from .models import Pizza, Filter
 from rest_framework import viewsets
+
+from .models import Pizza, Filter
 from .serializers import PizzaSerializer, FilterSerializer
 
 

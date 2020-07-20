@@ -35,13 +35,12 @@ INSTALLED_APPS = [
     # plugins
     'corsheaders',
     'rest_framework',
-    'imagekit',
     'drf_yasg',
     # custom apps
     'accounts.apps.AccountsConfig',
     'catalog.apps.CatalogConfig',
     'front.apps.FrontConfig',
-    # 'shop.apps.ShopConfig',
+    'shop.apps.ShopConfig',
 ]
 
 REST_FRAMEWORK = {

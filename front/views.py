@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 
-from .serializers import FrontPageSerializer, FrontTextSerializer, WorkMonthSerializer
 from .models import FrontPage, FrontText, WorkMonth
+from .serializers import FrontPageSerializer, FrontTextSerializer, WorkMonthSerializer
 
 
 class FrontPageViewSet(viewsets.ModelViewSet):
