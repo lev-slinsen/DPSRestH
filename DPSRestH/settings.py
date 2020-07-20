@@ -32,17 +32,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
     # plugins
     'corsheaders',
     'rest_framework',
-    'imagekit',
     'drf_yasg',
     # custom apps
     'accounts.apps.AccountsConfig',
-    # 'catalog.apps.CatalogConfig',
-    # 'front.apps.FrontConfig',
-    # 'shop.apps.ShopConfig',
+    'catalog.apps.CatalogConfig',
+    'front.apps.FrontConfig',
+    'shop.apps.ShopConfig',
 ]
 
 REST_FRAMEWORK = {
@@ -154,8 +152,8 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-STATIC_URL = '/static/'
-
-SITE_ID = 1
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN')
+DROPBOX_WRITE_MODE = 'overwrite'
 
 django_heroku.settings(locals())

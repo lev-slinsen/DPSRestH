@@ -3,8 +3,8 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import AdminPasswordChangeForm
 from django.utils.translation import ugettext_lazy as _
 
-from accounts.models import User
 from accounts.forms import UserAdminCreationForm, UserAdminChangeForm
+from accounts.models import User
 
 
 @admin.register(User)

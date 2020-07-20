@@ -13,22 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf import settings
 from django.conf.urls import url
-from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 from rest_framework import routers
 
-from . import views
-# from catalog import views as catalog_views
-# from front import views as front_views
-# from shop import views as shop_views
+from catalog import views as catalog_views
+from front import views as front_views
 
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
+# from shop import views as shop_views
 
 
 schema_view = get_schema_view(
@@ -44,18 +40,18 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,),
 )
 
-# router = routers.DefaultRouter()
-# router.register(r'pizza', catalog_views.PizzaViewSet)
-# router.register(r'filter', catalog_views.FilterViewSet)
+router = routers.DefaultRouter()
+router.register(r'pizza', catalog_views.PizzaViewSet)
+router.register(r'filter', catalog_views.FilterViewSet)
+router.register(r'front-page', front_views.FrontPageViewSet)
+router.register(r'front-text', front_views.FrontTextViewSet)
+router.register(r'work-month', front_views.WorkMonthViewSet)
 # router.register(r'order', shop_views.OrderViewSet)
-# router.register(r'front-page', front_views.FrontPageViewSet)
-# router.register(r'front-text', front_views.FrontTextViewSet)
-# router.register(r'work-month', front_views.WorkMonthViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('rest/', include(router.urls)),
+    path('rest/', include(router.urls)),
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
