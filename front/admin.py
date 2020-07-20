@@ -12,17 +12,8 @@ class FrontTextInline(admin.TabularInline):
 
 class FrontImageInline(admin.TabularInline):
     model = FrontImage
-    fields = ('image_name', 'image', 'image_preview')
-    readonly_fields = ('image_preview',)
+    fields = ('image_name', 'image')
     extra = 0
-
-    def image_preview(self, obj):
-        return mark_safe('<img src="{url}" width="{width}" height={height} />'.format(
-            url=obj.image.url,
-            width=obj.image.width,
-            height=obj.image.height,
-            )
-        )
 
 
 @admin.register(FrontPage)

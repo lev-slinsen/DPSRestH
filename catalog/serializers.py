@@ -10,7 +10,6 @@ class FilterSerializer(serializers.ModelSerializer):
 
 class PizzaSerializer(serializers.ModelSerializer):
     filter = FilterSerializer(read_only=True, many=True)
-    photo_thumbnail = serializers.ImageField()
 
     class Meta:
         model = Pizza
@@ -21,5 +20,4 @@ class PizzaSerializer(serializers.ModelSerializer):
                   'text_short',
                   'text_long',
                   'photo',
-                  'photo_thumbnail',
                   'filter')
