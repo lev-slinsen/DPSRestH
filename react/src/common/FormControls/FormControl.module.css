@@ -1,0 +1,142 @@
+.formControl {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    width: inherit;
+}
+
+.fieldWrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: left;
+    min-width: 8rem;
+    position: relative;
+    zoom: 1;
+    box-sizing: border-box;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    list-style: none;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum', "tnum";
+    margin-bottom: 14px;
+    vertical-align: top;
+}
+
+.paymentField {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.fieldWrapper select {
+    min-width: 150px;
+}
+
+.title {
+    display: block;
+    margin: 15px 0 0 0;
+    padding: 0 0 8px;
+    line-height: 1.5;
+    white-space: initial;
+    text-align: left;
+}
+
+.errorMessage {
+    color: red;
+}
+
+.titleRequired {
+    composes: title;
+}
+
+.titleRequired::before {
+    display: inline-block;
+    margin-right: 4px;
+    color: #f5222d;
+    font-size: 14px;
+    font-family: SimSun, sans-serif;
+    line-height: 1;
+    content: '*';
+}
+
+.error textarea,
+.error select,
+.error input {
+    border: solid red 1px;
+}
+
+.errorMessage {
+    color: red;
+}
+
+.success textarea,
+.success input,
+.success select {
+    border: solid #0acc00 1px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
+}
+
+.paymentField .row .fieldWrapper {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+}
+
+.paymentField .row .fieldWrapper .title {
+    padding: 0;
+    margin-left: 10px;
+}
+
+.rowSA {
+    composes: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.col {
+    composes: fieldWrapper;
+    display: flex;
+    flex-direction: column;
+}
+
+.btnAdd {
+    width: 6rem;
+
+    composes: mainBtn from './../../App.css';
+}
+
+.successBtn {
+    background-color: #83c318;
+    border-color: #30460b;
+    color: #FFFFFF;
+}
+
+.disabled {
+    border-color: #464646;
+    background-color: initial;
+    color: #1f1f20;
+}
+
+.disabled:hover {
+    border-color: #464646;
+    background-color: initial;
+    color: #1f1f20;
+}
+.paymentRow {
+    composes: row;
+}
+.paymentRow > * .title {
+    margin: 10px;
+}

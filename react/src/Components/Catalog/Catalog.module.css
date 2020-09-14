@@ -1,0 +1,63 @@
+
+.container {
+    composes: container from './../../App.css';
+    justify-content: center;
+}
+.productsContainer {
+    composes: container;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+
+.container .filterBlock{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 83%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.filterBlockTop:first-child {
+    border-bottom: 2px solid #4f4f4f;
+}
+
+.container .filterBlock .filterBlockTop{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    position: relative;
+    font-family: 'Vollkorn',sans-serif;
+}
+
+.container .filterBlock .filterBlockTop .filterBtn{
+    padding: 5px;
+}
+
+.container .filterBlock .filterBlockTop .filterBtn:hover{
+    text-shadow: 0px 0px 3px #9d3900;
+}
+.filterBtn {
+    position: relative;
+    color: #ff5500;
+    padding: 0;
+    border: none;
+    font-size: 20px;
+    margin: 5px 0;
+    /*font-weight: bolder;*/
+    display: flex;
+    justify-content: center;
+    min-width: 66px;
+}
+.filterBtn.active{
+    font-weight: bold;
+    color: #662700;
+}
+.filterBtn:disabled {
+    pointer-events: none;
+    color: #8b9898;
+}
+.filterBlockTop {
+    justify-content: space-around;
+}
