@@ -26,7 +26,7 @@ class Pizza(models.Model):
     Pizza model.
     """
     CATEGORY_CHOICES = (
-        (1, 'Category 1'),
+        ('Category 1', 'Category 1'),
         (2, 'Category 2'),
         (3, 'Category 3'),
         (4, 'Category 4')
