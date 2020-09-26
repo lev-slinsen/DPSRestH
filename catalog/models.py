@@ -26,10 +26,10 @@ class Pizza(models.Model):
     Pizza model.
     """
     CATEGORY_CHOICES = (
-        (1, _('Category 1')),
-        (2, _('Category 2')),
-        (3, _('Category 3')),
-        (4, _('Category 4'))
+        (1, 'Category 1'),
+        (2, 'Category 2'),
+        (3, 'Category 3'),
+        (4, 'Category 4')
     )
     name = models.CharField(max_length=45,
                             verbose_name=_('Pizza name'))
