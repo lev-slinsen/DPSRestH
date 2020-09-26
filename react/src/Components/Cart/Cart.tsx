@@ -43,7 +43,7 @@ const Cart = ({order, decreaseQuantity, increaseQuantity, removeFromOrder, total
 
     return (
         <div className={style.cartWrapper}>
-            {order.length ? <h2>Ваша корзина пуста.</h2> : <h2>В корзине товаров: {totalQuantity}</h2>}
+            {!order.length ? <h2>Ваша корзина пуста.</h2> : <h2>В корзине товаров: {totalQuantity}</h2>}
             {order.length ?
                 <React.Fragment>
                     <div className={style.cartTableWrapper}>

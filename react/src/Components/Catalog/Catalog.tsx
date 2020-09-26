@@ -38,7 +38,7 @@ interface I_LinkDispatchProps {
 interface I_State {
     bgPict: string
     isPopupOpen: boolean
-    popupProduct: I_productItem,
+    popupProduct: I_productItem | null,
     categories: Array<string>,
     selectedFilter: string,
     selectedCategory: string
@@ -48,7 +48,7 @@ const Catalog: React.FC<I_ConnectProps & I_LinkDispatchProps> = (props) => {
     let [state, setState] = useState<I_State>({
         bgPict: bgPict,
         isPopupOpen: false,
-        popupProduct: props.products[0],
+        popupProduct: null,
         categories: [],
         selectedFilter: 'All',
         selectedCategory: ''
@@ -62,13 +62,12 @@ const Catalog: React.FC<I_ConnectProps & I_LinkDispatchProps> = (props) => {
 
     let {languageData} = props;
 
-    const setPopupOpen = useCallback((product: I_productItem, option: boolean) => {
-        setState({...state, popupProduct: product});
-        setState({...state, isPopupOpen: option});
+    const setPopupOpen = useCallback((product: I_productItem | null, option: boolean) => {
+        setState({...state, popupProduct: product, isPopupOpen: option});
     }, [state]);
 
     const setPopupClose = useCallback(() => {
-        setPopupOpen(state.popupProduct, false)
+        setPopupOpen(null, false)
     }, [state]);
 
     const callCalculateOrder = useCallback(props.calculateOrder, []);
@@ -92,7 +91,7 @@ const Catalog: React.FC<I_ConnectProps & I_LinkDispatchProps> = (props) => {
 
     return (
         <div>
-            {state.isPopupOpen &&
+            {state.isPopupOpen && state.popupProduct &&
             <ProductsModal
                 product={state.popupProduct}
                 setPopupClose={setPopupClose}
@@ -167,7 +166,7 @@ const Filters = React.memo<IFiltersProps>(({categories, filters, changeCategory,
         '',
         'Готовые наборы',
         'Фуршетные (5 по 70г.)',
-        'Борльшие (135г.)',
+        'Большие (135г.)',
     ];
 
     return (
