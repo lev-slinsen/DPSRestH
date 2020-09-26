@@ -27,7 +27,7 @@ export const OrderReduxForm: React.FC<InjectedFormProps<I_orderFormData, I_Props
         const times = ["10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17"];
         let dates = ["2020-02-03"];
         orderDisabled.forEach((o: I_orderDates) => o.work_dates.forEach(d => dates.push(d.date)));
-        const payments = ["Наличными курьеру", "Картой курьеру"];//, "Картой на сайте"];
+        const payments = ["Наличными курьеру", "Картой курьеру" , "Картой на сайте"];
         let cx = classNames.bind(style);
         let classNameForbtnAdd = cx(style.btnAdd, {
             successBtn: submitting,
