@@ -3,6 +3,12 @@ import style from './Header.module.css';
 import {NavLink} from 'react-router-dom';
 import {I_languagePage} from "../../types/types";
 
+const checkActive = (match: any, location: any) => {
+    //some additional logic to verify you are in the home URI
+    if(!location) return false;
+    const {pathname} = location;
+    return pathname === "/";
+};
 
 interface IProps {
     setVisible?: (param: boolean) => void
@@ -13,7 +19,7 @@ function HeaderMenu({setVisible, languageData}: IProps) {
     return (
         <div className={style.headerIn}>
             <div className={style.menu}>
-                <NavLink onClick={() => setVisible?.(false)} to="/" activeClassName={style.active}>
+                <NavLink onClick={() => setVisible?.(false)} to="/" isActive={checkActive} activeClassName={style.active}>
                     Меню
                 </NavLink>
                 <NavLink onClick={() => setVisible?.(false)} to="/about" activeClassName={style.active}>

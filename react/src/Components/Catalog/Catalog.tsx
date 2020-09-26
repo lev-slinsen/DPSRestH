@@ -12,7 +12,7 @@ import {ProductsModal} from "../../common/PopupWrapper";
 import {addProductToOrder, calculateOrder, setSortCategory, setSortFilter} from "../../Redux/actions";
 
 
-const unique = function(a:string[]) {
+const unique = function (a: string[]) {
     for (var i = 0; i < a.length; ++i) {
         for (var j = i + 1; j < a.length; ++j) {
             if (a[i] === a[j]) a.splice(j--, 1);
@@ -54,84 +54,41 @@ const Catalog: React.FC<I_ConnectProps & I_LinkDispatchProps> = (props) => {
         selectedCategory: ''
     });
     useEffect(() => {
-        let cat = unique(props.products.map(p => p.category));
-        setState({...state, categories: cat, selectedCategory: cat[0]})
+        if (!state.categories.length) {
+            let cat = unique(props.products.map(p => p.category));
+            setState({...state, categories: cat, selectedCategory: cat[0]})
+        }
     }, [props.products]);
+
     let {languageData} = props;
 
     const setPopupOpen = useCallback((product: I_productItem, option: boolean) => {
         setState({...state, popupProduct: product});
         setState({...state, isPopupOpen: option});
-    }, []);
+    }, [state]);
 
     const setPopupClose = useCallback(() => {
         setPopupOpen(state.popupProduct, false)
-    }, []);
+    }, [state]);
 
     const callCalculateOrder = useCallback(props.calculateOrder, []);
 
     const callAddProductToOrder = useCallback(props.addProductToOrder, []);
 
-    const changeFilter = (filterName: string) => {
+    const changeFilter = useCallback((filterName: string) => {
         if (filterName === "All") {
             setState({...state, selectedFilter: filterName})
         } else {
             setState({...state, selectedFilter: filterName})
         }
-    };
-    const changeCategory = (category: string) => {
+    }, [state]);
+    const changeCategory = useCallback((category: string) => {
         if (state.selectedCategory === category) {
             setState({...state, selectedCategory: ''})
         } else {
             setState({...state, selectedCategory: category, selectedFilter: 'All'})
         }
-    };
-
-    let products = props.products
-        .filter(p =>
-            state.selectedCategory
-                ? p.category === state.selectedCategory
-                : !(state.selectedFilter && state.selectedFilter !== 'All')
-                    ? true
-                    : p.filter.map(f => f.name).includes(state.selectedFilter)
-        )
-        .map(p => (
-            <ProductCard product={p}
-                         openPopup={setPopupOpen}
-                         key={p.id}
-                         calculateOrder={callCalculateOrder}
-                         addProductToOrder={callAddProductToOrder}
-            />
-        ));
-    let filters = props.filters.map(f => {
-        let classBtn = f.name === state.selectedFilter ? `${style.filterBtn} ${style.active}` : style.filterBtn;
-        //let itemInRow = Math.round(props.filters.length / 2);
-        return <button key={f.name}
-                       className={classBtn}
-                       onClick={() => {
-                           changeFilter(f.name)
-                       }}
-                       disabled={f.name === 'All' ? false :
-                           props.products.filter(p =>
-                               state.selectedCategory ?
-                               p.filter.map(fi => fi.name).includes(f.name)
-                               && p.category === state.selectedCategory : true
-                           ).length <= 0
-                       }
-        >{f.name}</button>
-    });
-    let categories = state.categories
-        .map((c, i) => {
-            let classBtn = c === state.selectedCategory ? `${style.filterBtn} ${style.active}` : style.filterBtn;
-            return (
-                <button key={c + 'category' + i} className={classBtn}
-                        onClick={() => {
-                            changeCategory(c)
-                        }}
-                >{c}
-                </button>
-            )
-        });
+    }, [state]);
 
     return (
         <div>
@@ -148,23 +105,109 @@ const Catalog: React.FC<I_ConnectProps & I_LinkDispatchProps> = (props) => {
                         commonTexts={languageData.index.front_text}
                     />
                 </div>
-                <div className={style.container}>
-                    <div className={style.filterBlock}>
-                        <div className={style.filterBlockTop} style={{}}>
-                            {categories}
-                        </div>
-                        <div className={style.filterBlockTop}>
-                            {filters}
-                        </div>
-                    </div>
-                </div>
-                <div className={style.productsContainer}>
-                    {products}
-                </div>
+                <Filters categories={state.categories}
+                         filters={props.filters}
+                         changeCategory={changeCategory}
+                         changeFilter={changeFilter}
+                         products={props.products}
+                         selectedCategory={state.selectedCategory}
+                         selectedFilter={state.selectedFilter}
+                />
+                <Products
+                    products={props.products
+                        .filter(p => +state.selectedCategory === +p.category)
+                        .filter(p => !(state.selectedFilter && state.selectedFilter !== 'All')
+                            ? true
+                            : p.filter.map(f => f.name).includes(state.selectedFilter))
+                    }
+                    setPopupOpen={setPopupOpen}
+                    callCalculateOrder={callCalculateOrder}
+                    callAddProductToOrder={callAddProductToOrder}
+                />
             </div>
         </div>
     )
 };
+
+interface IProductsProps {
+    products: I_productItem[],
+    callAddProductToOrder: (product: I_productItem, quantity: number) => void
+    callCalculateOrder: () => void
+    setPopupOpen: (product: I_productItem, option: boolean) => void
+}
+
+const Products = React.memo<IProductsProps>(({products, setPopupOpen, callCalculateOrder, callAddProductToOrder}) => {
+    return (
+        <div className={style.productsContainer}>
+            {products
+                .map(p => (
+                    <ProductCard product={p}
+                                 openPopup={setPopupOpen}
+                                 key={p.id}
+                                 calculateOrder={callCalculateOrder}
+                                 addProductToOrder={callAddProductToOrder}
+                    />
+                ))}
+        </div>
+    )
+});
+
+interface IFiltersProps {
+    categories: Array<string>,
+    selectedFilter: string,
+    selectedCategory: string,
+    products: Array<I_productItem>,
+    filters: Array<I_filterItem>,
+    changeCategory: (c: string) => void
+    changeFilter: (f: string) => void
+}
+
+const Filters = React.memo<IFiltersProps>(({categories, filters, changeCategory, changeFilter, products, selectedCategory, selectedFilter}) => {
+    const renaming = [
+        '',
+        'Готовые наборы',
+        'Фуршетные (5 по 70г.)',
+        'Борльшие (135г.)',
+    ];
+
+    return (
+        <div className={style.filterBlock}>
+            <div className={style.filterBlockTop} style={{}}>
+                {categories
+                    .map((c, i) => {
+                        let classBtn = c === selectedCategory ? `${style.filterBtn} ${style.active}` : style.filterBtn;
+                        return (
+                            <button key={c + 'category' + i} className={classBtn}
+                                    onClick={() => {
+                                        changeCategory(c)
+                                    }}
+                            >{renaming[+c]}
+                            </button>
+                        )
+                    })}
+            </div>
+            <div className={style.filterBlockTop}>
+                {filters.map(f => {
+                    let classBtn = f.name === selectedFilter ? `${style.filterBtn} ${style.active}` : style.filterBtn;
+                    //let itemInRow = Math.round(props.filters.length / 2);
+                    return <button key={f.name}
+                                   className={classBtn}
+                                   onClick={() => {
+                                       changeFilter(f.name)
+                                   }}
+                                   disabled={f.name === 'All' ? false :
+                                       products.filter(p =>
+                                           selectedCategory ?
+                                               p.filter.map(fi => fi.name).includes(f.name)
+                                               && p.category === selectedCategory : true
+                                       ).length <= 0
+                                   }
+                    >{f.name === 'All' ? 'Все' : f.name}</button>
+                })}
+            </div>
+        </div>
+    )
+});
 
 const mapStateToProps = (state: AppStateType): I_ConnectProps => {
     return {
