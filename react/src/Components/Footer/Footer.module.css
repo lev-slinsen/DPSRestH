@@ -1,0 +1,55 @@
+.footerWrapper {
+    padding-top: 1.5rem;
+    font-family: 'Vollkorn',sans-serif;
+    color: #c3c3c3;
+    background-color: #343a40;
+}
+@media(min-width: 0px) and (max-width: 767px){
+    .footerWrapper {
+        margin-top: 2rem;
+    }
+}
+.container {
+    padding: .5rem;
+    composes: container from './../../App.css';
+}
+
+.containerRow {
+    justify-content: space-around;
+    max-width: 90%;
+    align-items: flex-start;
+    composes: row from './../../App.css';
+}
+
+.containerRow:nth-child(2) {
+    max-width: 33.333333%;
+}
+
+.containerCol {
+    flex-direction: column;
+    width: initial;
+    text-align: left;
+
+    composes: container;
+}
+
+.containerCol > p {
+    font-size: 16px;
+    margin: .4rem;
+    font-weight: 400;
+}
+
+.containerCol > h4 {
+    font-size: 1.2rem;
+    color: #c3c3c3;
+    font-weight: 600;
+}
+
+.payment {
+    display: flex;
+}
+
+.payment > img {
+    height: 1.2rem;
+    margin: .5rem;
+}

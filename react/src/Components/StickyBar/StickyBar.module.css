@@ -1,0 +1,110 @@
+
+.navButton {
+    position: -webkit-sticky;
+    position: fixed;
+    top: 10px;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    font-family: 'Vollkorn', sans-serif;
+}
+
+.navButton > div {
+    position: relative;
+}
+@media screen and (min-width: 1541px) and (max-width: 1800px){
+    .visible a{
+        right: 5%;
+    }
+}@media screen and (min-width: 1800px){
+    .visible a{
+        right: 10%;
+    }
+}
+
+.navButtonsBlock {
+    display: none;
+    align-items: center;
+    min-height: 4rem;
+    left: 0;
+    top: 0;
+    right: 0;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.navButtonsBlockDisplay {
+    composes: navButtonsBlock;
+    display: flex;
+}
+
+@media (max-width: 580px) {
+    .navButtonsBlock {
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 100vh;
+    }
+
+    .navButtonsBlockDisplay {
+        display: flex;
+    }
+
+    .container {
+        border-bottom: 1px solid darkgrey;
+    }
+}
+
+.btn {
+    text-shadow: 0 0 .4em #ff5500, 0 0 .4em #ff5500, 0 0 .4em #ff5500;
+    border: none;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.01);
+    margin: 5px;
+    cursor: pointer;
+    z-index: 50;
+    -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
+    transition: width 2s, height 2s, background-color 2s, transform 2s;
+}
+
+.btn:hover {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.btnActive {
+    border-bottom: 1px solid rgba(230, 230, 230, 0.4);
+}
+
+.btnMenu {
+    composes: btn;
+    position: absolute;
+    top: 0;
+    right: 10rem;
+    text-shadow: #1f1f20;
+}
+
+.btnMenu:after {
+    content: "";
+    position: absolute;
+    width: 1%;
+    height: 1%;
+    bottom: 50%;
+    right: 50%;
+    z-index: -1;
+    background-color: #ff55005e;
+    box-shadow: 0 0 24px 17px #ff5500;
+}
+
+.btnMenu > img {
+    max-width: 2rem;
+}
+
+.btnMenu:hover:after {
+    box-shadow: 0 0 24px 22px #ff5500;
+}

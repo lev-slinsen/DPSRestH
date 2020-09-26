@@ -1,0 +1,138 @@
+.aboutWrapper {
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+}
+
+.aboutWrapper h2 {
+    -webkit-text-emphasis-style: circle;
+    font-size: 2rem;
+    color: #ff6500;
+}
+
+/*.aboutWrapper .row:nth-child(2n) {*/
+/*    flex-direction: row-reverse;*/
+/*}*/
+
+.container {
+    padding: .5rem;
+
+    composes: container from './../../App.css';
+}
+
+.row {
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    /*flex-wrap: wrap;*/
+    /*min-height: min-content;*/
+    width: 100%;
+    padding: 1rem;
+
+    display: flex;
+}
+
+.row .textBlock {
+    text-align: left;
+}
+
+.row .textBlock .topBlock {
+    display: flex;
+    align-items: center;
+    color: #ff5500;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.row .textBlock .topBlock .icon {
+    font-size: 50px;
+    margin-right: 10px;
+}
+
+.row .textBlock {
+    width: 600px;
+    text-align: left;
+    font-size: 1rem;
+    color: #000000;
+    padding-top: 10px;
+}
+
+.row .imgBlock {
+    width: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row .imgBlock img {
+    display: block;
+    width: 100%;
+}
+
+.row .imgBlock.grid .gridItem {
+    height: 9rem;
+    width: calc(50% - 10px);
+    margin-bottom: 5px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.row .imgBlock.grid .gridItem img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.row .imgBlock.grid .gridItem + .gridItem {
+    margin-left: 5px;
+}
+
+.row .imgBlock.grid .gridItem:nth-child(2n+1) {
+    margin-left: 0;
+}
+
+.aboutWrapper .row:nth-child(2n) {
+    flex-direction: row-reverse;
+}
+
+@media(min-width: 768px) and (max-width: 991px){
+    .row .imgBlock{
+        width: 50%;
+        margin-left: 20px;
+    }
+    .aboutWrapper .row:nth-child(2n+1) .imgBlock{
+        margin-left: 0;
+        margin-right: 20px;
+    }
+    .row .textBlock{
+        width: 50%;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+    .aboutWrapper h2 {
+        margin-bottom: 0;
+    }
+
+    .row {
+        flex-direction: column-reverse !important;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+    }
+
+    .row .imgBlock {
+        width: 80%;
+        justify-content: center;
+    }
+
+    .row .textBlock {
+        width: 100%;
+        font-size: 0.8rem;
+        text-align: center;
+        padding: 0 0 15px 0;
+    }
+}
+@media (min-width: 0px) and (max-width: 555px){
+    .row .imgBlock {
+        width: 100%;
+    }
+}

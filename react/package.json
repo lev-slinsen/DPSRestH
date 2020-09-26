@@ -1,0 +1,70 @@
+{
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://ice-ivanov.github.io/DPSRestH",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "@types/node": "12.12.7",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "16.9.4",
+    "@types/react-lazy-load-image-component": "^1.3.0",
+    "@types/react-router-dom": "^5.1.2",
+    "antd": "^3.25.3",
+    "axios": "^0.19.0",
+    "classnames": "^2.2.6",
+    "moment": "^2.24.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-lazy-load-image-component": "^1.4.1",
+    "react-redux": "^7.1.1",
+    "react-reveal": "^1.2.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.3.0",
+    "redux": "^4.0.4",
+    "redux-form": "^8.2.6",
+    "redux-form-antd": "^3.2.2",
+    "redux-form-input-masks": "^2.0.1",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "typescript": "^3.7.2",
+    "yarn": "^1.22.4"
+  },
+  "scripts": {
+    "start-front": "react-scripts start -e .env ",
+    "build": "react-scripts build -e .env",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build -e .env",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/classnames": "^2.2.9",
+    "@types/jest": "24.0.22",
+    "@types/react-redux": "^7.1.5",
+    "@types/recompose": "^0.30.7",
+    "@types/redux-form": "^8.2.0",
+    "@types/redux-thunk": "^2.1.0",
+    "@types/reveal": "^3.3.33",
+    "csscomb": "^4.3.0",
+    "gh-pages": "^2.1.1",
+    "redux-devtools-extension": "^2.13.8"
+  }
+}

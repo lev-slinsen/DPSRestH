@@ -1,0 +1,36 @@
+.App
+{
+    text-align: center;
+
+    box-shadow: 0 0 5px 0 #00004b;
+}
+
+.banner
+{
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 100vh;
+    padding: 0;
+
+    background-color: #1f1f20;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+}
+
+
+.container
+{
+    composes: container from './../App.css';
+}
+
+.mainWrapper
+{
+    min-height: 120vh;
+}

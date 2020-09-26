@@ -1,0 +1,15 @@
+.btnAdd
+{
+    width: 6rem;
+
+    composes: mainBtn from './../../App.css';
+}
+.success {
+    background-color: #83c318;
+    border-color: #83c318;
+    color: #FFFFFF;
+}
+.success:hover {
+    background-color: #83c318;
+    border-color: #83c318;
+}

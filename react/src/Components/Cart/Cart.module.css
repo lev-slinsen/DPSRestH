@@ -1,0 +1,256 @@
+.container {
+    composes: container from './../../App.css';
+    overflow: initial;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btnSmall {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    color: #ff5500;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.btnSmallClose {
+    composes: btnSmall;
+    border: none;
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    right: 0;
+    color: inherit;
+    font-size: 1rem;
+}
+
+.col span {
+    font-size: 16px;
+}
+
+.col .bold {
+    color: #000000;
+    font-weight: bold;
+}
+
+.cartWrapper {
+    margin-top: 4rem;
+    composes: col;
+    font-family: 'Vollkorn', sans-serif;
+}
+
+.cartWrapper h2 {
+    font-size: 1.75rem;
+}
+
+.rowBetween {
+    composes: row;
+    justify-content: flex-end;
+    width: 80%;
+    padding: .5rem;
+}
+
+.rowBetween a + a {
+    margin-left: auto;
+}
+
+.rowBetween .btnToMenu button {
+    background-color: transparent;
+    color: #000000;
+    border: 1px solid grey;
+    transition: .2s all ease;
+}
+
+.rowBetween .btnToMenu button:hover {
+    border-color: #ff5500;
+    color: #ff5500;
+}
+
+.rowBetween .btnOrder button {
+    background-color: #fd7e14;
+    color: #000000;
+    border: 1px solid transparent;
+    transition: .2s all ease;
+}
+
+.rowBetween .btnOrder button:hover {
+    border: 1px solid #ff5500;
+    background-color: transparent;
+}
+
+.cartTableWrapper {
+    width: 80%;
+    font-family: 'Vollkorn', sans-serif;
+}
+
+.cartTable {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cartTable tbody tr:hover td {
+    background-color: #f9f9f9;
+}
+
+.cartTable thead th {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, .5);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.cartTable tr {
+    border-bottom: 1px solid rgba(255, 178, 99, 0.39);
+}
+.descText {
+    text-align: start;
+    font-size: smaller;
+    border-top: 1px solid #dbdadd;
+}
+
+.cartTable tr:nth-child(1) th:nth-child(2) {
+    text-align: left;
+}
+.colPrice {
+    composes: col;
+    padding-right: 15px;
+    grid-area: price;
+}
+.colCalc {
+    composes: col;
+    grid-area: calc;
+}
+.purpose {
+    grid-area: purpose;
+}
+.cartRowGrid {
+    display: grid;
+    position: relative;
+    padding: 5px;
+    width: 100%;
+    grid-template-areas: 'img descript purpose calc price';
+    grid-template-columns: 150px 1fr 15% 10% 15%;
+}
+.cartRowGrid > div {
+    display: flex;
+    /* width: 100%; */
+    /* position: relative; */
+    justify-content: center;
+    align-items: center;
+}
+@media (min-width: 0px) and (max-width: 991px) {
+    .cartTable {
+        /*min-width: 800px;*/
+    }
+}
+
+@media (max-width: 991px) {
+    .tableRow {
+        width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    .tableRow {
+        width: 100%;
+        padding: 0.3rem 1.5rem 0.3rem 0.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        align-self: center;
+    }
+    .descText {
+        display: none;
+    }
+    .cartRowGrid {
+        grid-template-areas:
+                'img descript price'
+                'img purpose calc';
+        grid-template-columns: 120px 1fr 1fr;
+        grid-template-rows: 60% 1fr;
+    }
+
+    .mainImg {
+        align-items: center;
+    }
+    .mainImg > img {
+        height: 120px;
+    }
+
+    .btnSmallClose {
+        top: 20%;
+        right: 0;
+    }
+}
+
+.tableRow > * span {
+    font-size: 14px;
+}
+
+.mainImg {
+    display: flex;
+    grid-area: img;
+}
+
+.mainImg > img {
+    width: 100px;
+}
+
+.buttonMain {
+    composes: mainBtn from './../../App.css';
+}
+
+.btnSmallMinus {
+    padding-bottom: 4px;
+
+    composes: btnSmall;
+}
+
+.empty {
+    display: flex;
+    content: '';
+    min-width: .5rem;
+}
+
+.description {
+    display: flex;
+    grid-area: descript;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.description h6 {
+    text-align: left;
+}
+
+.description > * {
+    margin: .2rem;
+}
+
+.description > h6 {
+    font-size: 16px;
+    font-weight: bolder;
+    /*border-bottom: 1px solid #999999;*/
+}

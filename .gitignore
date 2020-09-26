@@ -1,5 +1,7 @@
 venv*
-*.pyc
-.env
+.idea*
+/static
 db.sqlite3
-.idea
+/media/images/
+environment
+*.sock

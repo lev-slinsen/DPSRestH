@@ -84,6 +84,8 @@ CORS_ORIGIN_WHITELIST = [
     'https://127.0.0.1:3000',
     'http://127.0.0.1:8000',
     'http://127.0.0.1:3000',
+    'https://ice-ivanov.github.io/DPSRest',
+    'http://pechori.fps.by',
 ]
 
 CSRF_COOKIE_NAME = "csrftoken"
